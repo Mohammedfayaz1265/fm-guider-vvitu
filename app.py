@@ -1,11 +1,15 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 from chatbot import get_response
 import json
 import os
 
-app = Flask(__name__, template_folder='.')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-with open('college_data.json', 'r') as f:
+app = Flask(__name__, 
+            template_folder=os.path.join(BASE_DIR, 'templates'),
+            static_folder=os.path.join(BASE_DIR, 'static'))
+
+with open(os.path.join(BASE_DIR, 'college_data.json'), 'r') as f:
     college_data = json.load(f)
 
 @app.route('/')
