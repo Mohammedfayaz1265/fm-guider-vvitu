@@ -3,7 +3,7 @@ from chatbot import get_response
 import json
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='.')
 
 with open('college_data.json', 'r') as f:
     college_data = json.load(f)
