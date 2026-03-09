@@ -30,10 +30,4 @@ def chat():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
-```
 
-**Step 4** → Click **"Commit changes"** ✅
-
-**Step 5** → Wait 3 minutes → Open:
-```
-https://fm-guider-vvitu.onrender.com
