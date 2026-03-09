@@ -1,13 +1,12 @@
-from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask import Flask, render_template, request, jsonify
 from chatbot import get_response
 import json
 import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-app = Flask(__name__, 
-            template_folder=os.path.join(BASE_DIR, 'templates'),
-            static_folder=os.path.join(BASE_DIR, 'static'))
+# Look for templates in same folder as app.py
+app = Flask(__name__, template_folder=BASE_DIR)
 
 with open(os.path.join(BASE_DIR, 'college_data.json'), 'r') as f:
     college_data = json.load(f)
@@ -31,3 +30,10 @@ def chat():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
+```
+
+**Step 4** → Click **"Commit changes"** ✅
+
+**Step 5** → Wait 3 minutes → Open:
+```
+https://fm-guider-vvitu.onrender.com
