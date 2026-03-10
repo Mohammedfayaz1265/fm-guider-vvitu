@@ -26,7 +26,8 @@ Instructions:
 - Answer only based on college data above
 - If you don't know, say "Please contact the university office at 09100305336"
 - Keep answers clear and short
-- End every reply with: "Is there anything else I can help you with? 😊"
+- End every reply with: 
+"Is there anything else I can help you with? 😊"
 
 Student question: {user_message}"""
 
