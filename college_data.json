@@ -1,5 +1,7 @@
 {
   "college_name": "Vasireddy Venkatadri International Technological University",
+  "chancellor_name": "Vasireddy Vidya Sagar",
+  "vice_chairman": "Mahadev Vasireddy",
   "short_name": "VVITU",
   "established": "2007",
   "motto": "Absolute Discipline and Absolute Education",
@@ -55,8 +57,8 @@
   },
   "placements": {
     "info": "Top companies visit campus every year.",
-    "average_package": "5.5 LPA",
-    "highest_package": "12 LPA",
+    "average_package": "6.5 LPA",
+    "highest_package": "44 LPA",
     "total_placed_2024": "500+ students placed in 2024",
     "placement_rate": "85%",
     "top_companies": ["TCS", "Infosys", "Wipro", "Cognizant", "HCL", "Tech Mahindra", "Capgemini", "Accenture", "IBM", "Amazon", "Deloitte"]
@@ -66,7 +68,7 @@
     "NSS": "National Service Scheme - social service activities.",
     "annual_fest": "Annual college fest with cultural events and competitions.",
     "tech_fest": "Annual technical fest with hackathons and project expo.",
-    "clubs": ["Dance Club", "Technical Club", "Cooking Club", "Photography Club", "Music Club", "Drama Club", "Coding Club", "Art Club"]
+    "clubs": ["Dance Club(Western/Classical)", "Technical Club","Craetive thinking","Animation club", "Cooking Club", "Photography Club", "Music Club", "Drama Club", "Coding Club", "Art Club"]
   },
   "scholarships": {
     "government": "SC/ST/BC scholarships from AP Government.",
@@ -74,7 +76,7 @@
     "contact": "09100305336"
   },
   "admission": {
-    "process": "Through AP EAMCET or AP ECET counseling",
+    "process": "Through AP EAMCET or AP ECET counseling","Through Management",
     "documents_required": ["10th Marks Memo", "Intermediate Marks Memo", "EAMCET Rank Card", "Caste Certificate", "Income Certificate", "Aadhaar Card", "Passport photos", "Transfer Certificate"],
     "contact": "admissions@vvitu.ac.in",
     "phone": "09100305336"
