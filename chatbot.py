@@ -1,52 +1,50 @@
-from groq import Groq
-import json
 import os
+import json
+from groq import Groq
 from dotenv import load_dotenv
 
+# Load environment variables securely
 load_dotenv()
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
-# Try environment variable first, then hardcoded fallback
-GROQ_API_KEY = os.getenv("GROQ_API_KEY") or "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"
-
-try:
-    client = Groq(api_key=GROQ_API_KEY)
-except Exception as e:
-    print(f"Groq init error: {e}")
-    client = None
+# Initialize client only if key exists
+client = Groq(api_key=GROQ_API_KEY) if GROQ_API_KEY else None
 
 def get_response(user_message, college_data):
-    try:
-        if not client:
-            return "⚠️ AI service unavailable. Please contact Fayaz & Masthan."
+    if not client:
+        return "⚠️ AI service unavailable. Please check your API key configuration."
 
+    try:
         college_info = json.dumps(college_data, indent=2)
-        prompt = f"""You are FM Guider, a friendly AI companion for VVITU (Vasireddy Venkatadri International Technological University), Namburu, Guntur, Andhra Pradesh. Created by students Fayaz and Masthan in 2026.
+        
+        # System instructions separate from user input
+        system_prompt = f"""You are FM Guider, a friendly AI companion for VVITU (Vasireddy Venkatadri International Technological University), Namburu, Guntur, Andhra Pradesh. Created by students Fayaz and Masthan in 2026.
 
 College Information:
 {college_info}
 
 Instructions:
-- Be friendly and helpful to new students
-- Always call the university VVITU
-- Use emojis to make responses fun
-- Answer only based on college data above
-- If you don't know, say "Please contact the university office at 09100305336"
-- Keep answers clear and short
+- Be friendly and helpful to new students.
+- Always call the university VVITU.
+- Use emojis to make responses fun.
+- Answer ONLY based on the college data provided. Do not hallucinate external information.
+- If you don't know the answer, say "Please contact the university office at 09100305336".
+- Keep answers clear and short.
 - End every reply with: "Is there anything else I can help you with? 😊"
-
-Student question: {user_message}"""
+"""
 
         response = client.chat.completions.create(
             model="llama-3.3-70b-versatile",
-            messages=[{"role": "user", "content": prompt}],
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_message}
+            ],
             max_tokens=800,
             temperature=0.7
         )
+        
         return response.choices[0].message.content
 
     except Exception as e:
-        error_msg = str(e)
-        print(f"Groq Error: {error_msg}")
-        if "decommissioned" in error_msg or "model" in error_msg.lower():
-            return "⚠️ Model error! Please contact Fayaz to update the AI model."
-        return "⚠️ Something went wrong. Please try again in a moment! 😊"
+        print(f"Groq API Error: {str(e)}")
+        return "⚠️ I'm having trouble connecting to my brain! Please try again later."
