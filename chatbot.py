@@ -5,16 +5,20 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+# Try environment variable first, then hardcoded fallback
+GROQ_API_KEY = os.getenv("GROQ_API_KEY") or "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"
 
-if not GROQ_API_KEY:
-    # Hardcoded fallback - replace with your key
-    GROQ_API_KEY = "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"
-
-client = Groq(api_key=GROQ_API_KEY)
+try:
+    client = Groq(api_key=GROQ_API_KEY)
+except Exception as e:
+    print(f"Groq init error: {e}")
+    client = None
 
 def get_response(user_message, college_data):
     try:
+        if not client:
+            return "⚠️ AI service unavailable. Please contact Fayaz & Masthan."
+
         college_info = json.dumps(college_data, indent=2)
         prompt = f"""You are FM Guider, a friendly AI companion for VVITU (Vasireddy Venkatadri International Technological University), Namburu, Guntur, Andhra Pradesh. Created by students Fayaz and Masthan in 2026.
 
@@ -45,7 +49,4 @@ Student question: {user_message}"""
         print(f"Groq Error: {error_msg}")
         if "decommissioned" in error_msg or "model" in error_msg.lower():
             return "⚠️ Model error! Please contact Fayaz to update the AI model."
-        elif "api_key" in error_msg.lower():
-            return "⚠️ API key error! Please check the .env file."
-        else:
-            return f"⚠️ Error: {error_msg[:100]}"
+        return "⚠️ Something went wrong. Please try again in a moment! 😊"
