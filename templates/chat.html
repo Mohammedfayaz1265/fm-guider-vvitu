@@ -124,11 +124,15 @@ async function sendMsg(preset) {
     const input = document.getElementById('input');
     const msg = preset || input.value.trim();
     if (!msg) return;
+    
     input.value = '';
-
     addMsg(msg, true);
-    document.getElementById('typing').style.display = 'flex';
-    document.getElementById('msgs').scrollTop = document.getElementById('msgs').scrollHeight;
+    
+    const typingIndicator = document.getElementById('typing');
+    if (typingIndicator) typingIndicator.style.display = 'flex';
+    
+    const msgsContainer = document.getElementById('msgs');
+    msgsContainer.scrollTop = msgsContainer.scrollHeight;
 
     try {
         const res = await fetch('/chat', {
@@ -137,13 +141,22 @@ async function sendMsg(preset) {
             body: JSON.stringify({message: msg})
         });
         const data = await res.json();
-        document.getElementById('typing').style.display = 'none';
+        
+        if (typingIndicator) typingIndicator.style.display = 'none';
         addMsg(data.response, false);
     } catch(e) {
-        document.getElementById('typing').style.display = 'none';
-        addMsg('❌ Cannot connect to server! Make sure python app.py is running.', false);
+        // Critical Fix: Hide typing indicator on failure
+        if (typingIndicator) typingIndicator.style.display = 'none';
+        addMsg('⚠️ Network error. Cannot connect to the server.', false);
     }
 }
+
+// Add Enter Key Support
+document.getElementById('input').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        sendMsg();
+    }
+});
 </script>
 </body>
 </html>
