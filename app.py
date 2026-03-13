@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask import Flask, render_template, request, jsonify
 from chatbot import get_response
 import json
 import os
@@ -9,8 +9,15 @@ app = Flask(__name__,
             template_folder=os.path.join(BASE_DIR, 'templates'),
             static_folder=os.path.join(BASE_DIR, 'static'))
 
-with open(os.path.join(BASE_DIR, 'college_data.json'), 'r') as f:
-    college_data = json.load(f)
+# Safely load college data
+DATA_FILE = os.path.join(BASE_DIR, 'college_data.json')
+college_data = {}
+
+if os.path.exists(DATA_FILE):
+    with open(DATA_FILE, 'r', encoding='utf-8') as f:
+        college_data = json.load(f)
+else:
+    print(f"Warning: {DATA_FILE} not found. Knowledge base is empty.")
 
 @app.route('/')
 def index():
@@ -18,16 +25,22 @@ def index():
 
 @app.route('/chat')
 def chat_page():
-    return render_template('chat.html', college=college_data)
+    return render_template('chat.html')
 
 @app.route('/chat', methods=['POST'])
 def chat():
     data = request.get_json()
-    user_message = data.get('message', '')
+    user_message = data.get('message', '').strip()
+    
     if not user_message:
         return jsonify({'response': 'Please type a message! 😊'})
-    response = get_response(user_message, college_data)
-    return jsonify({'response': response})
+        
+    try:
+        response = get_response(user_message, college_data)
+        return jsonify({'response': response})
+    except Exception as e:
+        print(f"Server Error: {e}")
+        return jsonify({'response': '⚠️ Internal server error. Please try again later.'}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
