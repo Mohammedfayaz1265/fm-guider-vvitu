@@ -39,14 +39,14 @@
   },
 
   "timings": {
-    "college": "9:00 AM - 4:30 PM",
-    "library": "9:00 AM - 6:00 PM",
+    "college": "8:20 AM - 3:50 PM",
+    "library": "9:00 AM - 5:00 PM",
     "canteen": "8:00 AM - 5:00 PM",
     "office": "9:00 AM - 5:00 PM"
   },
 
   "facilities": {
-    "hostel": "Hostel facility available for both boys and girls. Fee is approximately 75,000 per year including food.",
+    "hostel": "Hostel facility available for both boys and girls. Fee is approximately 1,00,000 per year including food.",
     "hostel_highest_package": "Hostel contact: 09100305336",
     "library": "Library is open from 9 AM to 6 PM with more than 50,000 books available.",
     "sports": "Cricket, Football, Volleyball, Kabaddi, Athletics, Carrom, Chess",
@@ -61,11 +61,11 @@
 
   "placements": {
     "info": "Top companies visit our campus every year for recruitment.",
-    "average_package": "5.5 LPA",
-    "highest_package": "12 LPA",
-    "total_placed_2024": "500+ students placed in 2024",
+    "average_package": "6.5 LPA",
+    "highest_package": "44 LPA",
+    "total_placed_2024": "500+ students placed in 2025",
     "placement_rate": "85% placement rate",
-    "top_companies": ["TCS", "Infosys", "Wipro", "Cognizant", "HCL", "Tech Mahindra", "Capgemini", "Accenture", "IBM", "Amazon", "Deloitte"],
+    "top_companies": ["Amazon","TCS", "Infosys", "Wipro", "Cognizant", "HCL", "Tech Mahindra", "Capgemini", "Accenture", "IBM", "Deloitte"],
     "placement_cell": "Dedicated Training and Placement Cell helps students with resume, mock interviews and career guidance."
   },
 
@@ -78,6 +78,7 @@
     "clubs": [
       "Dance Club (Western, Classical)",
       "Technical Club",
+      "Creative thinking",
       "Cooking Club",
       "Photography Club",
       "Music Club",
@@ -92,11 +93,19 @@
     "merit": "Merit scholarships for top rankers in EAMCET.",
     "sports_quota": "Fee concession for state-level sports achievers.",
     "contact": "Contact admissions office for more details: 09100305336"
-  },
+   
+   },
 
   "admission": {
-    "process": "Admissions through AP EAMCET or AP ECET counseling",
-    "eligibility": "10+2 with Physics, Chemistry, Mathematics (PCM) with minimum 45% marks",
+    "process": "Admissions through AP EAMCET or AP ECET counseling or management",
+     "eligibility":[
+      "Students who are eligible for Merit Scholarships based on any one of the following criteria below:
+    * Intermediate Score: 95% and above
+    * JEE Main 2026: 93 Percentile and above
+    * VVITAT 2026: 93 Percentile and above
+    Apply Online: Visit vvitu.ac.in and complete your application for VVITAT 2026.
+    For Details Contact: 8341098336, 8179488336, 7702943336.",
+     ],
     "documents_required": [
       "10th Marks Memo",
       "Intermediate Marks Memo",
